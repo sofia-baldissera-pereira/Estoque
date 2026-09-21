@@ -7,7 +7,6 @@ void exibir_menu(void) {
     printf("1 - Listar produtos\n");
     printf("2 - Exibir total em estoque (com tributos)\n");
     printf("3 - Exibir total com desconto a vista\n");
-    printf("4 - Exibir total a prazo (com juros)\n");
     printf("0 - Sair\n");
     printf("Escolha uma opcao: ");
 }
@@ -28,6 +27,7 @@ void listar_produtos(Produto lista[], int total) {
 
 float calcular_total(Produto lista[], int total) {
     float soma = 0.0;
+    
     for (int i = 0; i < total; i++) {
         // BUG: calculo multiplicando errado e nao aplica taxa
         soma += lista[i].preco * lista[i].quantidade;
@@ -79,7 +79,10 @@ int main(void) {
                 printf("\nTotal a prazo com juros: R$ %.2f\n",
                     aplicar_juros(calcular_total(estoque, total_produtos)));
                 break;
-
+            case 3:
+                printf("\nTotal a vista com desconto: R$ %.2f\n",
+                    aplicar_desconto(calcular_total(estoque, total_produtos)));
+                break;
             case 0:
                 printf("\nEncerrando o programa...\n");
                 break;
@@ -95,8 +98,4 @@ int main(void) {
 
 float aplicar_desconto(float total) {
     return total - (total * TAXA_DESCONTO);
-}
-
-float aplicar_juros(float total) {
-    return total + (total * TAXA_JUROS);
 }
