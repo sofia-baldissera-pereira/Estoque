@@ -63,8 +63,20 @@ int main(void) {
             case 1:
                 listar_produtos(estoque, total_produtos);
                 break;
+
             case 2:
-                printf("\nTotal em estoque: R$ %.2f\n", calcular_total(estoque, total_produtos));
+                printf("\nTotal em estoque: R$ %.2f\n",
+                    calcular_total(estoque, total_produtos));
+                break;
+
+            case 3:
+                printf("\nTotal a vista com desconto: R$ %.2f\n",
+                    aplicar_desconto(calcular_total(estoque, total_produtos)));
+                break;
+
+            case 4:
+                printf("\nTotal a prazo com juros: R$ %.2f\n",
+                    aplicar_juros(calcular_total(estoque, total_produtos)));
                 break;
             case 3:
                 printf("\nTotal a vista com desconto: R$ %.2f\n",
@@ -73,6 +85,7 @@ int main(void) {
             case 0:
                 printf("\nEncerrando o programa...\n");
                 break;
+
             default:
                 printf("\nOpcao invalida!\n");
                 break;
